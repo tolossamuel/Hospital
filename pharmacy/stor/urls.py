@@ -1,5 +1,6 @@
 from . import views
 from django.urls import path
+app_name = 'stor'
 
 urlpatterns = [
     path('add-drug', views.add_drug, name='add_drug'),

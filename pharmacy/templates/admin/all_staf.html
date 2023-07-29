@@ -1,0 +1,136 @@
+{%load static%}
+<html>
+	<link rel="stylesheet" href="{%static 'tables.css'%}">
+	<a href="/admin-control/add-staff"><button>Add Staf</button></a>
+	<body>
+		<h1>Staf Worker</h1>
+		<h3>Doctor</h3>
+		{%if doctor%}
+		<table>
+			<thead>
+				<td>Order</td>
+				<td>Name Of Worker</td>
+				<td>Sex</td>
+				<td>Field</td>
+				<td>Mobile</td>
+				<td>Start Date</td>
+			</thead>
+			{%for doctor in doctor%}
+			<tr>
+				<td>{{forloop.counter }}</td>
+				<td>Dr {{doctor.first_name}} {{doctor.last_name}}</td>
+				<td>{{doctor.gender}}</td>
+				<td>{{doctor.filed}}</td>
+				<td>{{doctor.mobile}}</td>
+				<td>{{doctor.datetime}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%else%}
+		<h5>No doctor staf in the hospital</h5>
+		{%endif%}
+
+		<h3>Nurse</h3>
+		{%if nurse%}
+		<table>
+			<thead>
+				<td>Order</td>
+				<td>Name Of Worker</td>
+				<td>Sex</td>
+				<td>Field</td>
+				<td>Mobile</td>
+				<td>Start Date</td>
+			</thead>
+			{%for nurse in nurse%}
+			<tr>
+				<td>{{forloop.counter }}</td>
+				<td>Nurse {{nurse.first_name}} {{nurse.last_name}}</td>
+				<td>{{nurse.gender}}</td>
+				<td>{{nurse.filed}}</td>
+				<td>{{nurse.mobile}}</td>
+				<td>{{nurse.datetime}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%else%}
+		<h5>No nurse staf in the hospital</h5>
+		{%endif%}
+
+		<h3>Pharmacy</h3>
+		{%if pharmacy%}
+		<table>
+			<thead>
+				<td>Order</td>
+				<td>Name Of Worker</td>
+				<td>Sex</td>
+				<td>Field</td>
+				<td>Mobile</td>
+				<td>Start Date</td>
+			</thead>
+			{%for pharmacy in pharmacy%}
+			<tr>
+				<td>{{forloop.counter }}</td>
+				<td>{{pharmacy.first_name}} {{pharmacy.last_name}}</td>
+				<td>{{pharmacy.gender}}</td>
+				<td>{{pharmacy.filed}}</td>
+				<td>{{pharmacy.mobile}}</td>
+				<td>{{pharmacy.datetime}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%else%}
+		<h5>No pharmacy staf in the hospital</h5>
+		{%endif%}
+
+		<h3>Lab</h3>
+		{%if lab%}
+		<table>
+			<thead>
+				<td>Order</td>
+				<td>Name Of Worker</td>
+				<td>Sex</td>
+				<td>Field</td>
+				<td>Mobile</td>
+				<td>Start Date</td>
+			</thead>
+			{%for lab in lab%}
+			<tr>
+				<td>{{forloop.counter }}</td>
+				<td>{{lab.first_name}} {{lab.last_name}}</td>
+				<td>{{lab.gender}}</td>
+				<td>{{lab.filed}}</td>
+				<td>{{lab.mobile}}</td>
+				<td>{{lab.datetime}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%else%}
+		<h5>No lab staf in the hospital</h5>
+		{%endif%}
+		<h3>Receptions</h3>
+		{%if reception%}
+		<table>
+			<thead>
+				<td>Order</td>
+				<td>Name Of Worker</td>
+				<td>Sex</td>
+				<td>Field</td>
+				<td>Mobile</td>
+				<td>Start Date</td>
+			</thead>
+			{%for reception in reception%}
+			<tr>
+				<td>{{forloop.counter }}</td>
+				<td>{{reception.first_name}} {{reception.last_name}}</td>
+				<td>{{reception.gender}}</td>
+				<td>{{reception.filed}}</td>
+				<td>{{reception.mobile}}</td>
+				<td>{{reception.datetime}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%else%}
+		<h5>No reception staf in the hospital</h5>
+		{%endif%}
+	</body>
+</html>

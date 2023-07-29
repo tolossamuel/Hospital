@@ -1,0 +1,16 @@
+<html>
+	<title>Redirect patient to nurse</title>
+	<body>
+		<form action="" method="POST">
+			{%csrf_token%}
+			<select id="nurse" name="nurse_id">
+				{%for nurse in nurses%}
+				<option value="{{nurse.id}}">{{nurse.first_name}} {{nurse.last_name}}</option>
+				{%endfor%}
+			</select>
+			<br><br>
+			<input type="submit" value="Redirect">
+		</form>
+		<a href="/register-nurse/"><button>Back</button></a>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+{%load static%}
+<html>
+	<title>Today patients</title>
+	<link rel="stylesheet" href="{%static 'tables.css'%}">
+	<body>
+		{%if patient%}
+		<table>
+			<thead>
+				<td>Order</td>
+				<td>Patient Name</td>
+				<td>sex</td>
+				<td>Phone number</td>
+				<td>Status</td>
+			</thead>
+			{%for patients in patient%}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{patients.patient.Full_Name}}</td>
+				<td>{{patients.patient.Sex}}</td>
+				<td>{{patients.patient.Phone_Number}}</td>
+				<td><a href="/register-nurse/doctor-patient/{{patients.patient.id}}"><button>View</button></a></td>
+			</tr>
+			{%endfor%}
+		</table>
+		{%else%}
+		<h3>There is no data today</h3>
+		{%endif%}
+	</body>
+</html>

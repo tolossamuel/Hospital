@@ -1,0 +1,70 @@
+<h3>Wel Come To Patient Registration</h3>
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div>
+            <div>
+                <label for="First_Name">First Name : </label>
+                <input type="text" name="First_Name" />
+            </div>
+
+            <div>
+                <label for="Middle_Name">Middle Name : </label>
+                <input type="text" name="Middle_Name" />
+            </div>
+
+            <div>
+                <label for="Last_Name">Last Name : </label>
+                <input type="text" name="Last_Name" />
+            </div>
+
+            <div>
+                <label for="Age">Age : </label>
+                <input type="number" name="Age" />
+            </div>
+            
+            <div>
+                <label for="Father_Name">Father Name : </label>
+                <input type="text" name="Father_Name" />
+            </div>
+
+            <div>
+                <label for="Mother_Name">Mother Name : </label>
+                <input type="text" name="Mother_Name" />
+            </div>
+
+            <div>
+                <label for="sex">Sex : </label>
+                <select id="sex" name="Sex">
+                    <option value="none"></option>
+                    <option value="male">M</option>
+                    <option value="female">F</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="Address">Address : </label>
+                <input type="text" name="Address">
+            </div>
+
+            <div>
+                <label for="Phone_Number">Phone Number : </label>
+                <input type="text" name="Phone_number" placeholder="0911......">
+            </div>
+
+            <div>
+                <label for="Emergency_Phone_Number">Emergency Phone Number : </label>
+                <input type="text" name="Emergency_Phone_number" placeholder="0911......" >
+            </div>
+
+            <div>
+                <label for="Birth-Date">Birth Date : </label>
+                <input type="date" name="Birth-Date" >
+            </div>
+
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+</div>

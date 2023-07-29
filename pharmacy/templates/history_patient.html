@@ -4,7 +4,7 @@
 	<body>
 		<h3>
 			Name : {{history.patient.First_Name}} {{history.patient.Middle_name}} {{history.patient.Last_name}} <br>
-			Sex : {{histry.patient.Sex}} <br>
+			Sex : {{history.patient.Sex}} <br>
 			Age : {{history.patient.Age}} <br>
 			Phone Number : {{history.patient.Phone_Number}} <br>
 			Emergency Phone Number : {{history.patient.Emergency_Phone_Number}} <br>
@@ -24,5 +24,6 @@
 		</form>
 		<a href=""><button>Labratory</button></a><br><br>
 		<a href="/Drug-Request/{{history.patient.id}}"><button>Pharmacy</button></a>
+		<p><a href="/patients-doctor"><button>Back</button></a></p>
 	</body>
 </html>

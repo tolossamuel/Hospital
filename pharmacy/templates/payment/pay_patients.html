@@ -1,0 +1,27 @@
+<html>
+	<head>Payments</head>
+	<body>
+		
+		{%if pay_patient%}
+		<table>
+			<th>
+				<td>Name</td>
+				<td>Sex</td>
+				<td>Phone number</td>
+				<td>Price</td>
+				<td>Status</td>
+
+			</th>
+			{%for pay_patient in pay_patient%}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{pay_patient.patient.full_name}}</td>
+				<td>{{pay_patient.patient.Sex}}</td>
+				<td>{{pay_patient.patient.Phone_Number}}</td>
+				<td>{{pay_patient.price}}</td>
+				<td><a href=""><button>Done</button></a>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

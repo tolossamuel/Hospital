@@ -10,9 +10,11 @@
 <div>
     <form method="POST" action="">
         {% csrf_token %}
-        <h3>
-            {{form.as_p}}
-        </h3>
+        <p>Name Drug : <input type="text" name = "drug_name"></p>
+		<p>Quantity Drug : <input type="number" name = "quantity_drugs"></p>
+		<p>Price Per  Drug : <input type="number" name = "price_per_drug"></p>
+		<p>Discribtion of Drug : </p>
+		<textarea name="descriptions_drug"  cols="30" rows="10"></textarea>
         <input type="Submit" value="Submit" name="submit"/>
     </form>
 	{%if all_drug%}

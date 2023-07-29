@@ -1,0 +1,18 @@
+<html>
+	<title>Patient Status</title>
+
+	<body>
+		<form action="" method="POST">
+			{%csrf_token%}
+			<select id="doctor_id" name="doctor_id">
+				{%for doctor in doctor%}
+				<option value="{{doctor.id}}">{{doctor.first_name}} {{doctor.last_name}}</option>
+				{%endfor%}
+			</select>
+			<p>Status :</p>
+			<textarea name="status" cols="30" rows="10"></textarea>
+			<br><br>
+			<input type="submit" value="Redirect">
+		</form>
+	</body>
+</html>

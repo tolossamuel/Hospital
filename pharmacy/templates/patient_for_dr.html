@@ -14,14 +14,16 @@
 				<td>sex</td>
 				<td>History</td>
 				<td>Status</td>
+				<td>Complite</td>
 			</th>
 			{%for patients_DR in patients_DR%}
 			<tr>
 				<td>{{ forloop.counter }}</td>
-				<td>{{patients_DR.patient.First_Name}}</td>
+				<td>{{patients_DR.patient.Full_Name}}</td>
 				<td>{{patients_DR.patient.Phone_Number}}</td>
 				<td>{{patients_DR.patient.Sex}}</td>
 				<td><a href="history-patients/{{patients_DR.patient.id}}"><button>View</button></td>
+				<td>{{patients_DR.status}}</td>
 				<td><a href="/finish/{{patients_DR.id}}"><button>Done</button></td>
 			</tr>
 			{%endfor%}

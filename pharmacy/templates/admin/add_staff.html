@@ -1,0 +1,46 @@
+<html>
+	<h1>add new staff</h1>
+	{% for m in messages %}
+    <p style="color: red;">{{ m }}</p>
+{% endfor %}
+	<div>
+		<form method="POST" action="">
+			{% csrf_token %}
+			<p>First name</p>
+			<p><input type="text" name = 'fname' placeholder="First name"></p>
+			<p>Last name</p>
+			<p><input type="text" name = 'lname' placeholder="Last name"></p>
+			<p>Username</p>
+			<p><input type="text" name = 'username' placeholder="username"></p>
+			<p>Email</p>
+			<p><input type="email" name = 'email' placeholder="email"></p>
+			<p>Password</p>
+			<p><input type="password" name = 'password' placeholder="password"></p>
+			<p>Confirm Passowrd</p>
+			<p><input type="password" name = 'confirm_password' placeholder="confirm password"></p>
+			<p>Gender</p>
+			<select name="sex">
+				<option value="">Select Gender</option>
+				<option value="Male">Male</option>
+				<option value="Female">Female</option>
+				<option value="Other">Other</option>
+			</select>
+			<p>Profetion</p>
+			<select name="profetion">
+				<option value="">Select Profetion</option>
+				<option value="Doctor">Doctor</option>
+				<option value="Nurse">Nurse</option>
+				<option value="Reception">Reception</option>
+				<option value="Pharmacy">Pharmacy</option>
+				<option value="Labratory">Labratory</option>
+			</select>
+			<p>Field</p>
+			<p><input type="text" name = 'filed' placeholder="field of profetion"></p>
+			<p>Phone number</p>
+			<p><input type="text" name = 'mobile' placeholder="+251 909 000 000"></p>
+
+
+			<input type="Submit" value="Submit" name="submit"/>
+		</form>
+	</div>
+</html>

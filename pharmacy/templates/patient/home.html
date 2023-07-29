@@ -1,0 +1,21 @@
+
+<div>
+    <h1>
+        welcome to our hospital
+    </h1>
+</div>
+
+<div>
+    <form method="GET" action="">
+        <input type="text" placeholder="Search for patient...." name="search" />
+    </form>
+</div>
+<div>
+    {{patient_count}} result
+    {% for patient in patients %}
+    <p>
+       <a href="/register-nurse/nurse-patient/{{patient.id}}"> {{patient}} </a>
+    </p>
+    {% endfor %}
+</div>
+<a href="/register-nurse/register-patient" >register</a>
