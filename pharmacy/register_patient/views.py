@@ -58,8 +58,9 @@ def RegisterPatient(request):
                 Birth_Day = Birth_Date,
                 Age = Age,
             )
+            patient_id = patient.id
             patient.save()
-            return redirect('register_patient:register-patient')
+            return redirect('register_patient:nurse_patient',patient_id )
         except:
             print(lis)
     return render(request,"patient/register_patient.html")

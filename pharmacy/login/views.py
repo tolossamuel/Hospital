@@ -17,15 +17,18 @@ def login(request):
                 auth_login(request,user)
                 redirectors = ""
                 print(1234567890987654321)
-                if profetion == "Doctor":
-                    redirectors = 'stor:doctor_patients'
-                elif (profetion == 'Nurse'):
-                    redirectors = 'register_patient:Nurse'
-                elif (profetion == 'Receptions'):
-                    redirectors = 'register_patient:Home'
-                elif (profetion == 'Pharmacy'):
-                    redirectors = 'stor:pharma'
-                return redirect(f"{redirectors}")
+                if profetion == "Doctor" and user.profetion == "Doctor":
+                    return redirect('stor:doctor_patients')
+                elif (profetion == 'Nurse' and user.profetion == "Nurse"):
+                    return redirect('register_patient:Nurse')
+                elif (profetion == 'Receptions' and user.profetion == "Receptions"):
+                    return redirect('register_patient:Home')
+                elif (profetion == 'Pharmacy' and user.profetion == "Pharmacy"):
+                    return redirect('stor:pharma')
+                elif (profetion == 'Reception' and user.profetion == "Reception"):
+                    return redirect('register_patient:Home')
+                else:
+                    return redirect('login:login')
             else:
                 return redirect('login:login')
     return render(request, 'login/signin.html')

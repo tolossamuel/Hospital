@@ -4,7 +4,7 @@ from . import views
 app_name = "register_patient"
 urlpatterns = [
     path('',views.Home,name='Home'),
-    path('register-patient',views.RegisterPatient,name='register-patient'),
+    path('register-patient',views.RegisterPatient,name='RegisterPatient'),
     path('register-doctor',views.RegisterDoctor,name='register-doctor'),
     path('nurse',views.Nurse,name='Nurse'),
     path('doctor/<int:pk>',views.Doctor,name='doctor'),
