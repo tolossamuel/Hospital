@@ -1,0 +1,13 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labratory Result</title>
+</head>
+<body>
+	{% for user in user%}
+    <h1>{{ user.Patient_name }}</h1>
+        <p>{{ user.resulut }}</p>
+    {%endfor%}
+</body>
+</html>

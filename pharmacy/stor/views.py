@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect
-from .models import Drug_Stor,Register_Patient,drug_request
-from .forms import DrugAdd, DrugRequestForm
+from django.shortcuts import render,redirect, get_object_or_404
+from .models import Drug_Stor,Register_Patient,drug_request,User_lab_temporary,LabTestName,LabResult
+from .forms import DrugAdd, DrugRequestForm,UserLabTemporaryForm
 from django.template.defaultfilters import linebreaksbr
 from django.apps import apps
 from django.db.models import Q
@@ -142,3 +142,86 @@ def drug_for_patient(request, pk):
     if request.method =='POST':
          return redirect('stor:pharma')
     return render(request, 'drug_for_patient.html', dictionary)
+def pharma(request):
+     patient_with_pharma = []
+     if request.GET.get('search') != None :
+        search = request.GET.get('search')
+     else:
+        search = '#'
+    
+     patients = Register_Patient.objects.filter(
+        Q(full_name__icontains = search) 
+        )
+     patient_count = patients.count()
+    
+     dictionary = {'patients':patients}
+     return render(request, 'pharma.html', dictionary)
+def labRequest(request, pk):
+    
+    user = Register_Patient.objects.get(pk=pk)
+    print(user)
+    if request.method == 'POST':
+        selected_labs = request.POST.getlist('selected_labs')
+        print(selected_labs, user)
+        labs_str = ",".join(selected_labs)
+        user_lab_temporary = User_lab_temporary(Patient_name=user, labs=labs_str)
+        print(user_lab_temporary)
+        user_lab_temporary.save()
+
+        return redirect('stor:HistoryPatient', pk)
+    
+    sections = LabTestName.objects.all()
+    print(sections)
+
+    return render(request, 'labratory/lab_request_form.html', {'sections': sections})
+
+
+
+def save_user_lab_temporary(request):
+    if request.method == 'POST':
+        form = UserLabTemporaryForm(request.POST)
+        if form.is_valid():
+            instance = form.save(commit=False)  # Save the form data without committing to the database
+            selected_labs = request.POST.getlist('labs')  # Get the list of selected labs from the form
+            instance.save_selected_labs(selected_labs)  # Save the selected labs using the model method
+            return redirect('stor:success_url_name')  # Replace 'success_url_name' with the name of the URL pattern for the success page
+    else:
+        form = UserLabTemporaryForm()
+
+    return render(request, 'labratory/lab_request_form.html', {'form': form})
+
+def labratory(request):
+    data = User_lab_temporary.objects.all()
+
+    return render(request, 'labratory/labratory.html', {'data': data})
+
+def labratoryToDr(request, pk):
+     patient = Register_Patient.objects.get(id = pk)
+     temp_lap = User_lab_temporary.objects.filter(Patient_name = patient)
+     if request.method == "POST":
+          result = request.POST.get('result')
+          if result:               
+               res = LabResult(Patient_name = patient, resulut = result )
+               res.save()
+               return redirect('stor:labratory')
+     
+     context = {
+          'user' : temp_lap
+     }
+     
+     return render(request, 'labratory/labratory_to_doctor.html', context)
+
+
+def LabratoryResult(request, pk):
+     # user  = User_lab_temporary.objects.get(pk = pk)
+     patient = Register_Patient.objects.get(id = pk)
+     # res = LabResult.objects.get(patient_name = user.Patient_name)
+     lab_results = LabResult.objects.filter(Patient_name=patient)
+     
+     
+
+     context = {
+          'user': lab_results
+     }
+
+     return render(request, 'labratory/labratory_result.html', context)

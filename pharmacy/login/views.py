@@ -27,6 +27,8 @@ def login(request):
                     return redirect('stor:pharma')
                 elif (profetion == 'Reception' and user.profetion == "Reception"):
                     return redirect('register_patient:Home')
+                elif (profetion == 'Labratory' and user.profetion == 'Labratory'):
+                    return redirect('stor:labratory')
                 else:
                     return redirect('login:login')
             else:

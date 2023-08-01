@@ -1,5 +1,5 @@
-from django.forms import ModelForm
-from .models import Drug_Stor, drug_request
+from django.forms import ModelForm,CheckboxSelectMultiple
+from .models import Drug_Stor, drug_request,User_lab_temporary
 class DrugAdd(ModelForm):
     class Meta:
         model = Drug_Stor
@@ -9,7 +9,13 @@ class DrugRequestForm(ModelForm):
         model = drug_request
         exclude = ['patient']
 
-        
+class UserLabTemporaryForm(ModelForm):
+    class Meta:
+        model = User_lab_temporary
+        fields = ['Patient_name', 'labs']
+        widgets = {
+            'labs': CheckboxSelectMultiple,  # Use CheckboxSelectMultiple widget for multi-select labs
+        }
         
     
 

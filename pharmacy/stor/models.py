@@ -59,7 +59,32 @@ class drug_request (models.Model):
 #      time_with_patient = models.DateTimeField(auto_now=True)
 #      def __str__(self):
 #            return self.patient.First_Name
-     
+class LabTestName(models.Model):
+    name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
     
+class LabTest(models.Model):
+    lab_tase_name = models.ForeignKey(LabTestName, on_delete=models.PROTECT)
+    name = models.CharField(max_length=100)
+
+
+class User_lab_temporary(models.Model):
+    Patient_name = models.ForeignKey(Register_Patient, on_delete=models.PROTECT)
+    labs = models.CharField(max_length=1000, blank=True)
+    def save_selected_labs(self, selected_labs):
+        labs_str = ",".join(selected_labs)
+        self.labs = labs_str
+        self.save()
+    def get_selected_labs(self):
+        return self.labs.split(",") if self.labs else []
+    def __str__(self) -> str:
+        return f"{self.id} {self.Patient_name} "
+
+class LabResult(models.Model):
+     Patient_name = models.ForeignKey(Register_Patient, on_delete=models.PROTECT)
+     resulut = models.CharField(max_length=1000) 
+     def __str__(self):
+          return self.Patient_name.Full_Name
       
