@@ -16,7 +16,6 @@ def login(request):
             if user is not None:
                 auth_login(request,user)
                 redirectors = ""
-                print(1234567890987654321)
                 if profetion == "Doctor" and user.profetion == "Doctor":
                     return redirect('stor:doctor_patients')
                 elif (profetion == 'Nurse' and user.profetion == "Nurse"):
@@ -30,7 +29,14 @@ def login(request):
                 elif (profetion == 'Labratory' and user.profetion == 'Labratory'):
                     return redirect('stor:labratory')
                 else:
-                    return redirect('login:login')
+                    return redirect('login:logout')
             else:
                 return redirect('login:login')
     return render(request, 'login/signin.html')
+def logout(request):
+    user = request.user
+    if user.is_superuser:
+        auth.logout(request)
+        return redirect('admin_control:admin_login')
+    auth.logout(request)
+    return redirect('login:login')

@@ -11,8 +11,8 @@ def admin_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         if username and password:
-            user = authenticate(request, username=username, password=password, Superuser = True)
-            if user is not None:
+            user = authenticate(request, username=username, password=password)
+            if user is not None and user.is_superuser:
                 auth_login(request,user)
                 return redirect('admin_control:control_worker')
         else:
