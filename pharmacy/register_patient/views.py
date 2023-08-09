@@ -74,7 +74,6 @@ def nurse_patient(request,pk):
             nurse = user_login.objects.get(id = int(nurse_id))
             patient_to_nurse = patient_nurse(nurse = nurse, patient = patient)
             patient_to_nurse.save()
-            print(1234567890)
             return redirect('register_patient:Home')
     dictionary = {'nurses':nurses}
     return render(request, 'patient/patient_nurse.html',dictionary)
@@ -118,7 +117,6 @@ def doctor_patient(request,pk):
         doctors_id = request.POST.get('doctor_id')
         status = request.POST.get('status')
         if doctors_id and status:
-            print(1234567)
             redirect_doctor = user_login.objects.get(id = doctors_id)
             patient_doctor = Nurses(patient = patient,
                                     status = status,

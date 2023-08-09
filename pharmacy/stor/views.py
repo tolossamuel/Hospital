@@ -91,10 +91,14 @@ def doctor_patients(request):
      dictionary = {'patients_DR' : dr_patients}
      return render(request, 'patient_for_dr.html', dictionary)
 @login_required(login_url='/login/')
-def delete_temp(request,pk):
-     complit_patients = Nurses.objects.get(id = pk)
+def delete_temp(request,app_name,models_app_name,back,nameModels,pk):
+     
+     models_name = apps.get_model(app_label=models_app_name,model_name=nameModels)
+     print(1234567890)
+     print(1234567890)
+     complit_patients = models_name.objects.get(id = pk)
      complit_patients.delete()
-     return redirect('stor:doctor_patients')
+     return redirect(f"{app_name}:{back}")
 @login_required(login_url='/login/')
 def HistoryPatient(request,pk):
      user = request.user
@@ -150,7 +154,7 @@ def pharma(request):
         search = '#'
     
      patients = Register_Patient.objects.filter(
-        Q(full_name__icontains = search) 
+        Q(Full_Name__icontains = search) 
         )
      patient_count = patients.count()
     
